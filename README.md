@@ -56,11 +56,17 @@ docker build -t lanchonete-clientes .
 docker run -p 8080:8080 lanchonete-clientes
 ```
 
-## Deploy
+## CI/CD
 
-O deploy é automatizado via GitHub Actions:
-- **CI**: Executado em Pull Requests (testes + SonarCloud)
-- **CD**: Executado no merge para main (build + deploy no EKS)
+O projeto utiliza GitHub Actions para automacao:
+
+### CI (Continuous Integration)
+- **Trigger**: Pull Requests para `main`
+- **Steps**: Testes unitarios, JaCoCo, analise SonarCloud, Quality Gate
+
+### CD (Continuous Deployment)
+- **Trigger**: Push/Merge para `main`
+- **Steps**: Build Maven, Docker build/push para ECR, Deploy no EKS
 
 ## Repositórios Relacionados
 
