@@ -1,4 +1,4 @@
-# Service ClusterIP para Clientes
+# Service LoadBalancer para Clientes
 apiVersion: v1
 kind: Service
 metadata:
@@ -7,11 +7,11 @@ metadata:
     app: clientes
     component: service
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: clientes
   ports:
     - name: http
-      port: 8080
+      port: 80
       targetPort: 8080
       protocol: TCP
