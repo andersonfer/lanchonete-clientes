@@ -1,76 +1,34 @@
-# Lanchonete Clientes
+# Lanchonete - Clientes
 
-Microserviço de gestão de clientes do sistema de lanchonete.
+Microsserviço responsável pelo cadastro e identificação de clientes.
 
 ## Tecnologias
 
 - Java 17
 - Spring Boot 3
-- Spring JDBC
 - MySQL (RDS)
-- Docker
-- Kubernetes (EKS)
-
-## Funcionalidades
-
-- Cadastro de clientes
-- Identificação por CPF
-- Consulta de clientes
+- RabbitMQ
 
 ## Endpoints
 
 | Método | Endpoint | Descrição |
 |--------|----------|-----------|
-| POST | `/clientes` | Cadastrar cliente |
-| GET | `/clientes/cpf/{cpf}` | Buscar cliente por CPF |
-| POST | `/clientes/identificar` | Identificar cliente |
-| GET | `/actuator/health` | Health check |
+| POST | /clientes | Cadastrar novo cliente |
+| POST | /clientes/identificar | Identificar cliente por CPF |
+| GET | /clientes/cpf/{cpf} | Buscar cliente por CPF |
 
 ## Executar Localmente
 
 ```bash
-# Compilar
-mvn clean package
-
-# Executar
-java -jar target/clientes-1.0.0.jar
+mvn spring-boot:run
 ```
 
 ## Testes
 
 ```bash
-# Executar testes
 mvn test
-
-# Gerar relatório de cobertura
-mvn jacoco:report
 ```
 
-## Docker
+## Cobertura
 
-```bash
-# Build
-docker build -t lanchonete-clientes .
-
-# Run
-docker run -p 8080:8080 lanchonete-clientes
-```
-
-## CI/CD
-
-O projeto utiliza GitHub Actions para automacao:
-
-### CI (Continuous Integration)
-- **Trigger**: Pull Requests para `main`
-- **Steps**: Testes unitarios, JaCoCo, analise SonarCloud, Quality Gate
-
-### CD (Continuous Deployment)
-- **Trigger**: Push/Merge para `main`
-- **Steps**: Build Maven, Docker build/push para ECR, Deploy no EKS
-
-## Repositórios Relacionados
-
-- [lanchonete-infra](https://github.com/andersonfer/lanchonete-infra) - Infraestrutura
-- [lanchonete-pedidos](https://github.com/andersonfer/lanchonete-pedidos)
-- [lanchonete-cozinha](https://github.com/andersonfer/lanchonete-cozinha)
-- [lanchonete-pagamento](https://github.com/andersonfer/lanchonete-pagamento)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=andersonfer_lanchonete-clientes&metric=coverage)](https://sonarcloud.io/project/overview?id=andersonfer_lanchonete-clientes)
